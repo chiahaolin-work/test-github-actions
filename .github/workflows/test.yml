@@ -1,0 +1,26 @@
+# TODO: Need to migrate to staging settings after the staging environment has been created
+name: Deploy to QA environment (dev) from any branch
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Select an any branch to deploy to QA (dev) environment'
+        required: true
+        default: 'main'
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    environment: 'Development'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: SSH files preparation
+        run: |
+          mkdir -p ~/.ssh
+          touch ~/.ssh/known_hosts
+          ls
+          echo "${{ vars.TEST_VALUE }}"
