@@ -24,3 +24,4 @@ jobs:
           touch ~/.ssh/known_hosts
           ls
           echo "${{ vars.TEST_VALUE }}"
+          echo "${{ github.ref }}"
